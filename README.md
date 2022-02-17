@@ -1,6 +1,9 @@
 # Python SarvData API Client
 ---
-[![N|Solid](https://sarvdata.com/images/main-slide-img1.svg)](https://sarvdata.com/)
+<p align="center">
+  <a href="https://sarvdata.com/" rel="noopener">
+  <img src="https://sarvdata.com/images/logo-simple.png" alt="SarvData"></a>
+</p>
 
 
 ---
