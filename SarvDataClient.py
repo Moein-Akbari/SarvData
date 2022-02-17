@@ -214,7 +214,7 @@ class VM:
         url = f"/vm/check/{self.identity}"
         return self.sarvdata_client.request(url, method="GET")
 
-    def reload(self, disk_id: int, coupon: str):
+    def reload(self, disk_id: int, coupon=""):
         r"""Changes OS of VM. ALL DATA WILL BE DELETED!
         :param disk_id: VM OS, use disks method to get available Operating Systems.
         :param coupon: (optional) discount code.
