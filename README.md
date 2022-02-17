@@ -1,6 +1,6 @@
 # Python SarvData API Client
 ---
-[![N|Solid](https://sarvdata.com/blog/wp-content/uploads/2018/02/1-5-2-940x400.png)](https://sarvdata.com/)
+[![N|Solid](https://sarvdata.com/blog/wp-content/uploads/2022/02/main-web-update.png)](https://sarvdata.com/)
 
 
 ---
