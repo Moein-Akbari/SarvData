@@ -18,7 +18,7 @@ After cloning the project install python required libraries using this command:
 pip install -r requirements.txt
 ```
 
-Now you need yo get **<TOKEN>** from https://portal.sarvdata.com/ApiManager
+Now you need yo get `<TOKEN>` from https://portal.sarvdata.com/ApiManager
 
 _Documentation_ https://sarvdata.com/blog/instructions-for-using-the-rest-api-web-service
 
