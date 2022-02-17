@@ -2,7 +2,7 @@
 ---
 <p align="center">
   <a href="https://sarvdata.com/" rel="noopener">
-  <img src="https://sarvdata.com/images/logo-simple.png" alt="SarvData"></a>
+  <img src="https://sarvdata.com/images/main-slide-img1.svg" alt="SarvData"></a>
 </p>
 
 
