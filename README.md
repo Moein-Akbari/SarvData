@@ -78,7 +78,7 @@ for disk in disks:
         break
 ```
 > Create a VM 
-* **THIS MAY COST YOU MONEY!** :warning: 
+* :warning: **THIS MAY COST YOU MONEY!** :warning:
 ```
 sarv_client.vms.create(location_id, plan_id, period_type, disk_id, count)
 virtual_machines = sarv_client.vms.vm_list() # Update VM list
@@ -135,7 +135,7 @@ count = 2 # 2 Days
 coupon = "" # Discount code
 my_vm.renew(period_type, count, coupon)
 ```
-> :warning:  This Action **DELETES all data on your VM**
+* :warning:  This Action **DELETES all data on your VM**. :warning:
 ```
 # change OS
 disk_id = 1012 # VM OS, use disks method to get available Operating Systems.
