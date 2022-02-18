@@ -78,7 +78,7 @@ for disk in disks:
         break
 ```
 > Create a VM 
-> **THIS MAY COST YOU MONEY!** :warning: 
+* **THIS MAY COST YOU MONEY!** :warning: 
 ```
 sarv_client.vms.create(location_id, plan_id, period_type, disk_id, count)
 virtual_machines = sarv_client.vms.vm_list() # Update VM list
