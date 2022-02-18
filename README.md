@@ -111,7 +111,6 @@ my_vm.state
 ### VM Methods
 ```
 # shutdown
-my_vm = VM()
 my_vm.stop()
 
 # start
@@ -130,7 +129,7 @@ my_vm.save()
 my_vm.check()
 
 # renew
-period_type = 3 # Daily
+period_type = 2 # Daily
 count = 2 # 2 Days
 coupon = "" # Discount code
 my_vm.renew(period_type, count, coupon)
