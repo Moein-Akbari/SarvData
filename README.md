@@ -135,7 +135,7 @@ count = 2 # 2 Days
 coupon = "" # Discount code
 my_vm.renew(period_type, count, coupon)
 ```
-* :warning:  This Action **DELETES all data on your VM**. :warning:
+* :warning:  VM.reload Method changes os and **DELETES all data on your VM**. :warning:
 ```
 # change OS
 disk_id = 1012 # VM OS, use disks method to get available Operating Systems.
