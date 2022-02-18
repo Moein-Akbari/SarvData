@@ -83,8 +83,32 @@ for disk in disks:
 sarv_client.vms.create(location_id, plan_id, period_type, disk_id, count)
 virtual_machines = sarv_client.vms.vm_list() # Update VM list
 ```
+### VM Attributes
+```
+# VM ID
+my_vm.identity
 
-### Actions on a VM
+# VM OS
+my_vm.disk_name
+
+# VM IP Address : ipaddress.IPv4Address
+my_vm.external_IP_address 
+
+# VM Authentication Default Values
+my_vm.default_username
+my_vm.default_password
+
+# VM Expire Date : datetime
+my_vm.expire_moment
+
+# VM Details
+my_vm.plan_name
+my_vm.startup_memory # MB
+my_vm.cpu_cores
+my_vm.disk_size # GB
+my_vm.state
+```
+### VM Methods
 ```
 # shutdown
 my_vm = VM()
