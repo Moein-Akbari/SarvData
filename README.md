@@ -134,7 +134,7 @@ count = 2 # 2 Days
 coupon = "" # Discount code
 my_vm.renew(period_type, count, coupon)
 ```
-* :warning:  VM.reload Method changes os and **DELETES all data on your VM**. :warning:
+* :warning:  `<VM>.reload` Method changes os and **DELETES all data on your VM**. :warning:
 ```
 # change OS
 disk_id = 1012 # VM OS, use disks method to get available Operating Systems.
@@ -142,7 +142,7 @@ my_vm.reload(disk_id)
 ```
 
 ## More Examples
-> Use `get_vm_by_ip` method to access your VM by IP.
+> Use `<VM>.get_vm_by_ip` method to access your VM by IP.
 > It returns you a <VM> object and you can use <VM> methods on it.
 ```
 sarv_client = SarvDataClient("<TOKEN>")
