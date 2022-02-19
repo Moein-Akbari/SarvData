@@ -22,7 +22,7 @@ Now you need yo get `<TOKEN>` from https://portal.sarvdata.com/ApiManager
 
 _Documentation_ https://sarvdata.com/blog/instructions-for-using-the-rest-api-web-service
 
-## Examples
+## Getting Started 
 
 ### SarvDataClient Object:
 ```
@@ -139,4 +139,28 @@ my_vm.renew(period_type, count, coupon)
 # change OS
 disk_id = 1012 # VM OS, use disks method to get available Operating Systems.
 my_vm.reload(disk_id)
+```
+
+## More Examples
+> Use `get_vm_by_ip` method to access your VM by IP.
+> It returns you a <VM> object and you can use <VM> methods on it.
+```
+sarv_client = SarvDataClient("<TOKEN>")
+backup_server = sarv_client.vms.get_vm_by_ip("142.251.36.46")
+print(
+f"""
+    BACKUP Server \ {backup_server.disk_name}
+    ID : {backup_server.identity}
+    CPU Cores : {backup_server.cpu_cores}
+    MEMORY : {backup_server.startup_memory}
+    STATE : {backup_server.state}
+""")
+```
+> Output
+```
+BACKUP Server \ Win Server 2019 x64
+ID : 10796
+CPU Cores : 2
+MEMORY : 2048
+STATE : Installed
 ```
