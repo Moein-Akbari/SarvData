@@ -37,108 +37,6 @@ class SarvDataClient:
             response["Succeed"]
 
 
-class Account:
-    def __init__(self, sarvdata_client: SarvDataClient):
-        self.sarvdata_client = sarvdata_client
-
-    def who_am_i(self) -> dict:
-        r"""
-        Returns api owner account's details:
-            FirstName
-            LastName
-            PhoneNumber
-            Email
-        """
-        url = "/whoami"
-        return self.sarvdata_client.request(url, method="GET")
-
-
-class VMs:
-    def __init__(self, sarvdata_client: SarvDataClient):
-        self.sarvdata_client = sarvdata_client
-
-    def vm_list(self) -> list:
-        r"""Returns a list of VM."""
-        url = "/vm/list/"
-        vm_list = []
-        response = self.sarvdata_client.request(url, method="GET")
-        for vm in response:
-            vm_list.append(
-                VM(
-                    sarvdata_client=self.sarvdata_client,
-                    identity=vm["Id"],
-                    disk_name=vm["DiskName"],
-                    external_IP_address=ipaddress.ip_address(vm["ExternalIPAddress"]),
-                    default_username=vm["DefaultUserName"],
-                    default_password=vm["DefaultPassword"],
-                    expire_moment=datetime.strptime(
-                        vm["ExpireMoment"], "%Y-%m-%dT%H:%M:%S.%f"
-                    )
-                    if vm["ExpireMoment"]
-                    else None,
-                    plan_name=vm["PlanName"],
-                    startup_memory=vm["StartupMemory"],
-                    cpu_cores=vm["CpuCores"],
-                    disk_size=vm["DiskSizeGB"],
-                    state=vm["State"],
-                )
-            )
-        return vm_list
-
-    def locations(self) -> list:
-        r"""Returns locaion list and details."""
-        url = "/locations"
-        return self.sarvdata_client.request(url, method="GET")
-
-    def create(
-        self,
-        location_id: int,
-        plan_id: int,
-        period_type: int,
-        disk_id: int,
-        count: int,
-        coupon="",
-    ):
-        r"""Creates new VM. THIS MAY COST YOU MONEY
-        :param location_id: VM Location, use locations method to get location list.
-        :param plan_id: VM Plan, use Plan method to get plan list.
-        :param period_type: Use 0 for Monthly, 1 for Weekly, 2 for Daily and 3 for Hourly. Parameters could be changed, Check docs.
-        :param disk_id: VM OS, use disks method to get available Operating Systems.
-        :param count: count of periods.
-        :param coupon: (optional) discount code.
-        docs > sarvdata.com/blog/instructions-for-using-the-rest-api-web-service/
-        """
-        url = "/vm/create"
-        data = {
-            "LocationId": location_id,
-            "PlanId": plan_id,
-            "PeriodType": period_type,
-            "DiskId": disk_id,
-            "Count": count,
-            "Coupon": coupon,
-        }
-        return self.sarvdata_client.request(url, method="POST", data=data)
-
-    def plans(self, location_id: int, period_type: int) -> list:
-        r"""Returns plan list and details.
-        :param location_id: VM Location, use locations() to get location list.
-        :param period_type: Use 0 for Monthly, 1 for Weekly, 2 for Daily and 3 for Hourly. Parameters could be changed, Check docs.
-        docs > sarvdata.com/blog/instructions-for-using-the-rest-api-web-service/
-        """
-        url = f"/locations/{location_id}/plans/{period_type}"
-        return self.sarvdata_client.request(url, method="GET")
-
-    def disks(self, location_id: int, period_type: int, plan_id: int) -> list:
-        r"""Returns OS list.
-        :param location_id: VM Location, use locations method to get location list.
-        :param plan_id: VM Plan, use Plan method to get plan list.
-        :param period_type: Use 0 for Monthly, 1 for Weekly, 2 for Daily and 3 for Hourly. Parameters could be changed, Check docs.
-        docs > sarvdata.com/blog/instructions-for-using-the-rest-api-web-service/
-        """
-        url = f"/locations/{location_id}/plans/{plan_id}/disks/{period_type}"
-        return self.sarvdata_client.request(url, method="GET")
-
-
 class VM:
     def __init__(
         self,
@@ -244,3 +142,118 @@ class VM:
             "Coupon": coupon,
         }
         return self.sarvdata_client.request(url, method="POST", data=data)
+
+
+class Account:
+    def __init__(self, sarvdata_client: SarvDataClient):
+        self.sarvdata_client = sarvdata_client
+
+    def who_am_i(self) -> dict:
+        r"""
+        Returns api owner account's details:
+            FirstName
+            LastName
+            PhoneNumber
+            Email
+        """
+        url = "/whoami"
+        return self.sarvdata_client.request(url, method="GET")
+
+
+class VMs:
+    def __init__(self, sarvdata_client: SarvDataClient):
+        self.sarvdata_client = sarvdata_client
+
+    def vm_list(self) -> list:
+        r"""Returns a list of VM."""
+        url = "/vm/list/"
+        vm_list = []
+        response = self.sarvdata_client.request(url, method="GET")
+        for vm in response:
+            vm_list.append(
+                VM(
+                    sarvdata_client=self.sarvdata_client,
+                    identity=vm["Id"],
+                    disk_name=vm["DiskName"],
+                    external_IP_address=ipaddress.ip_address(vm["ExternalIPAddress"]),
+                    default_username=vm["DefaultUserName"],
+                    default_password=vm["DefaultPassword"],
+                    expire_moment=datetime.strptime(
+                        vm["ExpireMoment"], "%Y-%m-%dT%H:%M:%S.%f"
+                    )
+                    if vm["ExpireMoment"]
+                    else None,
+                    plan_name=vm["PlanName"],
+                    startup_memory=vm["StartupMemory"],
+                    cpu_cores=vm["CpuCores"],
+                    disk_size=vm["DiskSizeGB"],
+                    state=vm["State"],
+                )
+            )
+        return vm_list
+
+    def locations(self) -> list:
+        r"""Returns locaion list and details."""
+        url = "/locations"
+        return self.sarvdata_client.request(url, method="GET")
+
+    def create(
+        self,
+        location_id: int,
+        plan_id: int,
+        period_type: int,
+        disk_id: int,
+        count: int,
+        coupon="",
+    ):
+        r"""Creates new VM. THIS MAY COST YOU MONEY
+        :param location_id: VM Location, use locations method to get location list.
+        :param plan_id: VM Plan, use Plan method to get plan list.
+        :param period_type: Use 0 for Monthly, 1 for Weekly, 2 for Daily and 3 for Hourly. Parameters could be changed, Check docs.
+        :param disk_id: VM OS, use disks method to get available Operating Systems.
+        :param count: count of periods.
+        :param coupon: (optional) discount code.
+        docs > sarvdata.com/blog/instructions-for-using-the-rest-api-web-service/
+        """
+        url = "/vm/create"
+        data = {
+            "LocationId": location_id,
+            "PlanId": plan_id,
+            "PeriodType": period_type,
+            "DiskId": disk_id,
+            "Count": count,
+            "Coupon": coupon,
+        }
+        return self.sarvdata_client.request(url, method="POST", data=data)
+
+    def plans(self, location_id: int, period_type: int) -> list:
+        r"""Returns plan list and details.
+        :param location_id: VM Location, use locations() to get location list.
+        :param period_type: Use 0 for Monthly, 1 for Weekly, 2 for Daily and 3 for Hourly. Parameters could be changed, Check docs.
+        docs > sarvdata.com/blog/instructions-for-using-the-rest-api-web-service/
+        """
+        url = f"/locations/{location_id}/plans/{period_type}"
+        return self.sarvdata_client.request(url, method="GET")
+
+    def disks(self, location_id: int, period_type: int, plan_id: int) -> list:
+        r"""Returns OS list.
+        :param location_id: VM Location, use locations method to get location list.
+        :param plan_id: VM Plan, use Plan method to get plan list.
+        :param period_type: Use 0 for Monthly, 1 for Weekly, 2 for Daily and 3 for Hourly. Parameters could be changed, Check docs.
+        docs > sarvdata.com/blog/instructions-for-using-the-rest-api-web-service/
+        """
+        url = f"/locations/{location_id}/plans/{plan_id}/disks/{period_type}"
+        return self.sarvdata_client.request(url, method="GET")
+
+    def get_vm_by_ip(self, ip_address: ipaddress.ip_address) -> VM:
+        r"""Returns VM Object by IP
+        :param ip_address: Server external IP address
+        :return: :class:`VM` object
+        """
+        if type(ip_address) != ipaddress.ip_address:
+            ip_address = ipaddress.ip_address(ip_address)
+        for vm in self.vm_list():
+            if vm.external_IP_address == ip_address:
+                return vm
+        else:
+            raise Exception(f"{ip_address} not found in your VMs.")
