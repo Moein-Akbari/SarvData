@@ -11,7 +11,7 @@
 ## Installing
 Clone code:
 ```
-git clone https://github.com/Moein-Akbari/SarvData.git
+git clone https://github.com/Moein-Akbari/SarvData.git && cd SarvData
 ```
 After cloning the project install python required libraries using this command:
 ```
