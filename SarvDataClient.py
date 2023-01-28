@@ -164,7 +164,7 @@ class VMs:
     def __init__(self, sarvdata_client: SarvDataClient):
         self.sarvdata_client = sarvdata_client
 
-    def vm_list(self) -> list:
+    def vm_list(self) -> list[VM]:
         r"""Returns a list of VM."""
         url = "/vm/list/"
         vm_list = []
