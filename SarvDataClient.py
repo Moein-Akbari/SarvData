@@ -175,7 +175,7 @@ class VMs:
                     sarvdata_client=self.sarvdata_client,
                     identity=vm["Id"],
                     disk_name=vm["DiskName"],
-                    external_IP_address=ipaddress.ip_address(vm["ExternalIPAddress"]),
+                    external_IP_address=ipaddress.ip_address(vm["ExternalIPAddress"]) if vm["ExternalIPAddress"] else None,
                     default_username=vm["DefaultUserName"],
                     default_password=vm["DefaultPassword"],
                     expire_moment=datetime.strptime(
