@@ -179,7 +179,7 @@ class VMs:
                     default_username=vm["DefaultUserName"],
                     default_password=vm["DefaultPassword"],
                     expire_moment=datetime.strptime(
-                        vm["ExpireMoment"], "%Y-%m-%dT%H:%M:%S.%f"
+                        vm["ExpireMoment"].split('.')[0], "%Y-%m-%dT%H:%M:%S"
                     )
                     if vm["ExpireMoment"]
                     else None,
