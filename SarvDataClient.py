@@ -4,7 +4,7 @@ import requests
 # Internal
 import ipaddress
 from datetime import datetime
-
+from typing import List
 
 class SarvDataClient:
     def __init__(
@@ -164,7 +164,7 @@ class VMs:
     def __init__(self, sarvdata_client: SarvDataClient):
         self.sarvdata_client = sarvdata_client
 
-    def vm_list(self) -> list[VM]:
+    def vm_list(self) -> List[VM]:
         r"""Returns a list of VM."""
         url = "/vm/list/"
         vm_list = []
